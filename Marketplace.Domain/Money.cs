@@ -8,8 +8,8 @@ namespace Marketplace.Domain
     public class Money : Value<Money>
     {
         private const string DefaultCurrency = "EUR";
-        public static Money FromDecimal(decimal amount, string currency = DefaultCurrency) => new Money(amount);
-        public static Money FromString(string amount, string currency = DefaultCurrency) => new Money(decimal.Parse(amount));
+        public static Money FromDecimal(decimal amount, string currency, ICurrencyLookup currencyLookup) => new Money(amount, currency, currencyLookup);
+        public static Money FromString(string amount, string currency, ICurrencyLookup currencyLookup) => new Money(decimal.Parse(amount), currency, currencyLookup);
 
         protected Money(decimal amount, string currencyCode, ICurrencyLookup currencyLookup)
         {
